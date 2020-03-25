@@ -14,17 +14,20 @@ export default function CountrySelector() {
                 e => {
                     setSelectedCountry(e.target.value);
                 }
-            } >
+            }>
                 {
-                    Object.entries(countries.countries).map(
-                        ([country, code ]) => (
-                            <option selected={selectedCountry === countries.iso3[code]}
-                             key={country} value={countries.iso3[code]}>
-                                {country}
+                    countries.countries.map(
+                        country => (
+                            <option 
+                            key={country.name}
+                            value={country.iso3}
+                            selected={selectedCountry === country.iso3}>
+                                {country.name}
                             </option>
-                        )
-                    )
+                        )   
+                     )
                 }
+               
             </select>
             <h2>Currently Showing {selectedCountry}</h2>
             <Stats url={`https://covid19.mathdro.id/api/countries/${selectedCountry}`}></Stats>
